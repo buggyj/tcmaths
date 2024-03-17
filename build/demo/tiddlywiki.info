@@ -1,6 +1,6 @@
 {
 	"plugins": [
-		"bj/jsoneditor"
+		"bj/tcmaths"
 	],
 	"themes": [
 		"tiddlywiki/vanilla",

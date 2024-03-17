@@ -1,0 +1,12 @@
+{
+	"tiddlers": [
+		{
+			"file": "TapDigit.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/bj/tcmaths/TapDigit.js",
+				"module-type": "library"
+			}
+		}
+	]
+}
