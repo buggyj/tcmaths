@@ -2,6 +2,8 @@
   Copyright (C) 2011 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2010 Ariya Hidayat <ariya.hidayat@gmail.com>
 
+  changes Copyright (C) 2024 buggyjef
+
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
 
@@ -94,18 +96,18 @@ TapDigit.Lexer = function () {
 
     function scanOperator() {
         var ch = peekNextChar();
-        if ('+-*/()^%=;,'.indexOf(ch) >= 0) {
+        if ('+-*/()'.indexOf(ch) >= 0) {
             return createToken(T.Operator, getNextChar());
         }
         return undefined;
     }
 
     function isIdentifierStart(ch) {
-        return (ch === '_') || isLetter(ch);
+        return (ch === '$') ||(ch === '@') ||(ch === '#') ||(ch === '%') || isLetter(ch);
     }
 
     function isIdentifierPart(ch) {
-        return isIdentifierStart(ch) || isDecimalDigit(ch);
+        return  isLetter(ch) || isDecimalDigit(ch);
     }
 
     function scanIdentifier() {
@@ -548,8 +550,8 @@ TapDigit.Evaluator = function (ctx) {
             if (context.Constants.hasOwnProperty(node.Identifier)) {
                 return context.Constants[node.Identifier];
             }
-            if (context.Variables.hasOwnProperty(node.Identifier)) {
-                return context.Variables[node.Identifier];
+            if (context.Variables.hasOwnProperty(node.Identifier[0]) &&  context.Variables[node.Identifier[0]].hasOwnProperty(node.Identifier.substring(1))) {
+                return 1*context.Variables[node.Identifier[0]][node.Identifier.substring(1)];
             }
             throw new SyntaxError('Unknown identifier');
         }
@@ -892,3 +894,5 @@ TapDigit.Editor = function (element) {
     };
 };
 
+
+exports.TapDigit=TapDigit;
