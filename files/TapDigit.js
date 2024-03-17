@@ -96,7 +96,7 @@ TapDigit.Lexer = function () {
 
     function scanOperator() {
         var ch = peekNextChar();
-        if ('+-*/()'.indexOf(ch) >= 0) {
+        if ('+-*/(),'.indexOf(ch) >= 0) {
             return createToken(T.Operator, getNextChar());
         }
         return undefined;
